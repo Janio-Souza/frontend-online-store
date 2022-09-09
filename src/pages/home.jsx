@@ -1,6 +1,8 @@
 import React from 'react';
 import Categories from '../components/categories';
 import { getCategories } from '../services/api';
+import { Link } from 'react-router-dom';
+
 
 export default class Home extends React.Component {
   state = {
@@ -36,6 +38,11 @@ export default class Home extends React.Component {
             />
           ))
         }
+        <button
+          type="submit"
+        >
+          <Link to="shoppingCart" data-testid="shopping-cart-button">Carrinho</Link>
+        </button>
       </div>
     );
   }
