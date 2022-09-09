@@ -1,19 +1,40 @@
 import React from 'react';
+import Categories from '../components/categories';
+import { getCategories } from '../services/api';
 
 export default class Home extends React.Component {
   state = {
     products: [],
     message: 'Digite algum termo de pesquisa ou escolha uma categoria.',
+    categories: [],
   };
 
+  async componentDidMount() {
+    const categories = await getCategories();
+    this.setState({ categories });
+    console.log('log categorias', categories);
+  }
+
   render() {
-    const { products, message } = this.state;
+    const { products, message, categories } = this.state;
     return (
       <div>
-        <input type="text" placeholder="Pesquisar Produto" />
+        <div className="home">
+          <input type="text" placeholder="Pesquisar Produto" />
+          {
+            products.length === 0
+              ? <p data-testid="home-initial-message">{ message }</p> : null
+          }
+        </div>
+        <p>Categorias</p>
         {
-          products.length === 0
-            ? <p data-testid="home-initial-message">{ message }</p> : null
+          categories.map((element) => (
+            <Categories
+              key={ element.id }
+              id={ element.id }
+              categories={ element.name }
+            />
+          ))
         }
       </div>
     );

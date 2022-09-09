@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import './App.css';
 import Home from './pages/home';
 
 // Grupo-38
