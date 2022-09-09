@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from '../components/categories';
-// import cardProducts from '../components/cardProducts';
+import ProductsCard from '../components/productsCard';
 
 export default class Home extends React.Component {
   state = {
@@ -59,16 +59,18 @@ export default class Home extends React.Component {
           allProducts.length === 0
             ? <p data-testid="home-initial-message">{ message }</p> : null
         }
-        {/* {
+
+        {
           allProducts.map((item) => (
-            <cardProducts
+            item.length === false
+            && <ProductsCard
               key={ item.id }
               name={ item.title }
               image={ item.thumbnail }
               price={ item.price }
             />
           ))
-        } */}
+        }
 
         <p>Categorias</p>
         {
