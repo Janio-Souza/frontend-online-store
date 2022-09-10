@@ -18,8 +18,9 @@ export default class Home extends React.Component {
   }
 
   handleClick = async (categoryId) => {
+    const { target: { id } } = categoryId;
     const { inputText } = this.state;
-    const allProducts = await getProductsFromCategoryAndQuery(inputText, categoryId);
+    const allProducts = await getProductsFromCategoryAndQuery(inputText, id);
     this.setState({ allProducts: allProducts.results });
   };
 
@@ -31,56 +32,60 @@ export default class Home extends React.Component {
   render() {
     const { message, categories, allProducts } = this.state;
     return (
-      <div>
-        <input
-          type="text"
-          placeholder="Pesquisar Produto"
-          data-testid="query-input"
-          onChange={ this.handleChange }
-        />
+      <main>
+        <section className="home">
+          <input
+            type="text"
+            placeholder="Pesquisar Produto"
+            data-testid="query-input"
+            onChange={ this.handleChange }
+          />
 
-        <button
-          type="button"
-          value="Pesquisar"
-          data-testid="query-button"
-          onClick={ this.handleClick }
-        >
-          Pesquisar
-        </button>
+          <button
+            type="button"
+            value="Pesquisar"
+            data-testid="query-button"
+            onClick={ this.handleClick }
+          >
+            Pesquisar
+          </button>
 
-        <button
-          type="button"
-        >
-          <Link to="shoppingCart" data-testid="shopping-cart-button">Carrinho</Link>
-        </button>
+          <button
+            type="button"
+          >
+            <Link to="shoppingCart" data-testid="shopping-cart-button">Carrinho</Link>
+          </button>
 
-        {
-          allProducts.length === 0
-            ? <p data-testid="home-initial-message">{ message }</p> : null
-        }
-        {
-          allProducts.length === 0 ? <p>Nenhum produto foi encontrado</p>
-            : allProducts.map((item) => (
-              <CardProducts
-                key={ item.id }
-                name={ item.title }
-                image={ item.thumbnail }
-                price={ item.price }
+          {
+            allProducts.length === 0
+              ? <p data-testid="home-initial-message">{ message }</p> : null
+          }
+          {
+            allProducts.length === 0 ? <p>Nenhum produto foi encontrado</p>
+              : allProducts.map((item) => (
+                <CardProducts
+                  key={ item.id }
+                  name={ item.title }
+                  image={ item.thumbnail }
+                  price={ item.price }
+                />
+              ))
+          }
+        </section>
+        <nav className="categories">
+          <p>Categorias</p>
+          {
+            categories.map((element) => (
+              <Categories
+                key={ element.id }
+                id={ element.id }
+                categories={ element.name }
+                click={ this.handleClick }
               />
             ))
-        }
-
-        <p>Categorias</p>
-        {
-          categories.map((element) => (
-            <Categories
-              key={ element.id }
-              id={ element.id }
-              categories={ element.name }
-            />
-          ))
-        }
-      </div>
+          }
+        </nav>
+      </main>
     );
   }
 }
