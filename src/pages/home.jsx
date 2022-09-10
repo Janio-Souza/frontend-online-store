@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from '../components/categories';
-import ProductsCard from '../components/productsCard';
+import CardProducts from '../components/productsCard';
 
 export default class Home extends React.Component {
   state = {
@@ -30,7 +30,6 @@ export default class Home extends React.Component {
 
   render() {
     const { message, categories, allProducts } = this.state;
-    console.log(allProducts);
     return (
       <div>
         <input
@@ -59,17 +58,16 @@ export default class Home extends React.Component {
           allProducts.length === 0
             ? <p data-testid="home-initial-message">{ message }</p> : null
         }
-
         {
-          allProducts.map((item) => (
-            item.length === false
-            && <ProductsCard
-              key={ item.id }
-              name={ item.title }
-              image={ item.thumbnail }
-              price={ item.price }
-            />
-          ))
+          allProducts.length === 0 ? <p>Nenhum produto foi encontrado</p>
+            : allProducts.map((item) => (
+              <CardProducts
+                key={ item.id }
+                name={ item.title }
+                image={ item.thumbnail }
+                price={ item.price }
+              />
+            ))
         }
 
         <p>Categorias</p>

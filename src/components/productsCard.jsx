@@ -5,7 +5,7 @@ class cardProducts extends React.Component {
   render() {
     const { name, image, price } = this.props;
     return (
-      <div>
+      <div data-testid="product">
         <p>{ name }</p>
         <img src={ image } alt={ name } />
         <p>{ price }</p>
