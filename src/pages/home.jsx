@@ -18,8 +18,9 @@ export default class Home extends React.Component {
   }
 
   handleClick = async (categoryId) => {
+    const { target: { id } } = categoryId;
     const { inputText } = this.state;
-    const allProducts = await getProductsFromCategoryAndQuery(inputText, categoryId);
+    const allProducts = await getProductsFromCategoryAndQuery(inputText, id);
     this.setState({ allProducts: allProducts.results });
   };
 
@@ -77,6 +78,7 @@ export default class Home extends React.Component {
               key={ element.id }
               id={ element.id }
               categories={ element.name }
+              click={ this.handleClick }
             />
           ))
         }
