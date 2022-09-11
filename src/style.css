@@ -1,35 +1,38 @@
 .header {
-  width: 100%;
   border: solid;
+  width: 100%;
   height: 48px;
 }
 
 .categories {
   position: absolute;
-  top: 51px;
   border: solid;
+  top: 51px;
   width: 30%;
 }
+
 .products {
   display: flex;
   flex-wrap: wrap;
-  width: 70%;
-  margin-left: 30.5%;
   align-items: center;
+  margin-left: 30.5%;
+  width: 70%;
 }
+
 .product {
-  border-style: solid;
-  border-width: 2px;
-  Width: 179.6px;
-  Height: 258.7px;
-  Top: 190px;
-  Left: 345px;
-  margin: 5px;
   display: flex;
-  flex-direction: column;
+  border-style: solid;
+  height: 258.7px;
+  Width: 179.6px;
+  border-width: 2px;
+  left: 345px;
+  top: 190px;
+  margin: 5px;
   align-items: center;
   text-align: center;
+  flex-direction: column;
 }
-#description-category {
+
+#descriptionCategory {
   text-align: center;
 }

@@ -75,7 +75,7 @@ export default class Home extends React.Component {
           }
         </section>
         <nav className="categories">
-          <p id="description-category">Categorias</p>
+          <p id="descriptionCategory">Categorias</p>
           {
             categories.map((element) => (
               <Categories
