@@ -54,7 +54,7 @@ export default class Home extends React.Component {
           <button
             type="button"
           >
-            <Link to="shoppingCart" data-testid="shopping-cart-button">Carrinho</Link>
+            <Link to="/shoppingCart" data-testid="shopping-cart-button">Carrinho</Link>
           </button>
         </header>
         <section className="products">
@@ -67,6 +67,7 @@ export default class Home extends React.Component {
               : allProducts.map((item) => (
                 <CardProducts
                   key={ item.id }
+                  id={ item.id }
                   name={ item.title }
                   image={ item.thumbnail }
                   price={ item.price }
@@ -75,7 +76,7 @@ export default class Home extends React.Component {
           }
         </section>
         <nav className="categories">
-          <p id="category">Categorias</p>
+          <p className="text_alig_center">Categorias</p>
           {
             categories.map((element) => (
               <Categories

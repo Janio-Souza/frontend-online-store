@@ -1,3 +1,7 @@
+.text_alig_center {
+  text-align: center;
+}
+
 .header {
   border: solid;
   height: 48px;
@@ -21,18 +25,15 @@
 
 .product {
   align-items: center;
-  display: flex;
   border-style: solid;
-  Width: 179.6px;
-  height: 258.7px;
   border-width: 2px;
+  display: flex;
+  flex-direction: column;
+  height: 258.7px;
   left: 345px;
   margin: 5px;
-  top: 190px;
-  flex-direction: column;
   text-align: center;
+  top: 190px;
+  width: 179.6px;
 }
 
-#category {
-  text-align: center;
-}
