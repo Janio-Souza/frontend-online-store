@@ -5,10 +5,10 @@ export default class Categories extends React.Component {
   render() {
     const { categories, id, click } = this.props;
     return (
-      <aside className="categories">
+      <aside className="category">
         <input
           type="radio"
-          name="categories"
+          name="category"
           id={ id }
           data-testid="category"
           onChange={ click }

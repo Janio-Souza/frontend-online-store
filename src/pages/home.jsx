@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from '../components/categories';
 import CardProducts from '../components/productsCard';
+import '../style.css';
 
 export default class Home extends React.Component {
   state = {
@@ -33,7 +34,7 @@ export default class Home extends React.Component {
     const { message, categories, allProducts } = this.state;
     return (
       <main>
-        <section className="home">
+        <header className="header">
           <input
             type="text"
             placeholder="Pesquisar Produto"
@@ -53,9 +54,10 @@ export default class Home extends React.Component {
           <button
             type="button"
           >
-            <Link to="shoppingCart" data-testid="shopping-cart-button">Carrinho</Link>
+            <Link to="/shoppingCart" data-testid="shopping-cart-button">Carrinho</Link>
           </button>
-
+        </header>
+        <section className="products">
           {
             allProducts.length === 0
               ? <p data-testid="home-initial-message">{ message }</p> : null
@@ -65,6 +67,7 @@ export default class Home extends React.Component {
               : allProducts.map((item) => (
                 <CardProducts
                   key={ item.id }
+                  id={ item.id }
                   name={ item.title }
                   image={ item.thumbnail }
                   price={ item.price }
@@ -73,7 +76,7 @@ export default class Home extends React.Component {
           }
         </section>
         <nav className="categories">
-          <p>Categorias</p>
+          <p className="text_alig_center">Categorias</p>
           {
             categories.map((element) => (
               <Categories
