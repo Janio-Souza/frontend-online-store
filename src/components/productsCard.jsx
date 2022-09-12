@@ -8,14 +8,12 @@ class CardProducts extends React.Component {
     redirect: false,
     idProduct: '',
     infoStorage: {},
-    sectionStorage: [],
   };
 
   componentDidMount() {
     const { name, image, price } = this.props;
     const { id } = this.props;
-    this.setState({ idProduct: id });
-    this.setState({ infoStorage: { name, image, price } });
+    this.setState({ idProduct: id, infoStorage: name, price, image });
   }
 
   handleKeyDown() {
@@ -23,12 +21,12 @@ class CardProducts extends React.Component {
   }
 
   addStorage = () => {
-    // const { sectionStorage } = this.state;
-    this.setState({ sectionStorage: [...infoStorage] });
-    // const { idProduct, infoStorage } = this.state;
-    // const setInforStorage = JSON.stringify(infoStorage);
-    // localStorage.setItem(idProduct, setInforStorage);
-    // console.log(idProduct);
+    const { idProduct } = this.state;
+    if (!JSON.parse(localStorage.getItem('itens'))) {
+      localStorage.setItem('itens', JSON.stringify([]));
+    }
+    const checkLocalStorage = JSON.parse(localStorage.getItem('itens'));
+    localStorage.setItem('itens', JSON.stringify([...checkLocalStorage, idProduct]));
   };
 
   redirect = () => {
