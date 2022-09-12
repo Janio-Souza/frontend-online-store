@@ -6,6 +6,10 @@ class ShoppingCart extends React.Component {
     message: 'Seu carrinho está vazio',
   };
 
+  componentDidMount() {
+    console.log(localStorage.getItem('MLB1563389012'));
+  }
+
   render() {
     const { shoppingCart, message } = this.state;
     return (

@@ -7,16 +7,29 @@ class CardProducts extends React.Component {
   state = {
     redirect: false,
     idProduct: '',
+    infoStorage: {},
+    sectionStorage: [],
   };
 
   componentDidMount() {
+    const { name, image, price } = this.props;
     const { id } = this.props;
     this.setState({ idProduct: id });
+    this.setState({ infoStorage: { name, image, price } });
   }
 
   handleKeyDown() {
 
   }
+
+  addStorage = () => {
+    // const { sectionStorage } = this.state;
+    this.setState({ sectionStorage: [...infoStorage] });
+    // const { idProduct, infoStorage } = this.state;
+    // const setInforStorage = JSON.stringify(infoStorage);
+    // localStorage.setItem(idProduct, setInforStorage);
+    // console.log(idProduct);
+  };
 
   redirect = () => {
     this.setState({ redirect: true });
@@ -43,7 +56,12 @@ class CardProducts extends React.Component {
             { price }
           </p>
         </div>
-        <button type="button">Adiconar ao carrinho</button>
+        <button
+          type="button"
+          onClick={ this.addStorage }
+        >
+          Adiconar ao carrinho
+        </button>
         { redirect ? <Redirect to={ `/productyDetails/${idProduct}` } /> : null }
       </div>
     );

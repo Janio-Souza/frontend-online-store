@@ -11,7 +11,6 @@ export default class ProductyDetails extends React.Component {
   async componentDidMount() {
     const { match: { params: { id } } } = this.props;
     const productDetails = await getProductById(id);
-    console.log(productDetails);
     this.setState({ productDetails });
   }
 
