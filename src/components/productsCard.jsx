@@ -12,21 +12,33 @@ class CardProducts extends React.Component {
 
   componentDidMount() {
     const { id, name, image, price } = this.props;
-    this.setState({ idProduct: id, infoStorage: { id, name, price, image } });
+    this.setState({ idProduct: id, infoStorage: [{ id, name, price, image }, 1] });
   }
 
   handleKeyDown() {
 
   }
 
-  addStorage = () => {
+  addStorage = async () => {
+    const { product, id } = this.props;
     const { infoStorage } = this.state;
-    this.setState({ infoStorage: { amount: 1 } }); // Realizar um previstate para somar mais um cada vez
     if (!JSON.parse(localStorage.getItem('itens'))) {
       localStorage.setItem('itens', JSON.stringify([]));
     }
     const checkLocalStorage = JSON.parse(localStorage.getItem('itens'));
-    localStorage.setItem('itens', JSON.stringify([...checkLocalStorage, infoStorage]));
+    if (product) {
+      const productShopping = checkLocalStorage.find((item) => item[0].id === id);
+      if (productShopping === undefined) {
+        localStorage.setItem('itens', JSON.stringify(
+          [...checkLocalStorage, infoStorage],
+        ));
+      } else {
+        const index = checkLocalStorage
+          .findIndex((search) => search[0] === productShopping[0]);
+        checkLocalStorage[index][1] += 1;
+        localStorage.setItem('itens', JSON.stringify(checkLocalStorage));
+      }
+    }
   };
 
   redirect = () => {

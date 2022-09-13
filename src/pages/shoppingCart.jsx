@@ -20,27 +20,16 @@ class ShoppingCart extends React.Component {
             ? <p data-testid="shopping-cart-empty-message">{message}</p>
             : (
               shoppingCart
-                .map((item, indice, array) => (
-                  // console.log(indice)
-                  // item.id !== array[indice].id ? console.log('Igual') : console.log('Não igual')
-                  <div className="product" key={ item.id }>
-                    <p ata-testid="shopping-cart-product-name">{ item.name }</p>
-                    <img src={ item.image } alt={ item.name } />
+                .map((item) => (
+                  <div className="product" key={ item[0].id }>
+                    <p data-testid="shopping-cart-product-name">{ item[0].name }</p>
+                    <img src={ item[0].image } alt={ item[0].name } />
                     <p>
                       R$
-                      { ` ${item.price}`}
+                      { ` ${item[0].price}`}
                     </p>
                   </div>
-
-                  // <div className="product" key={ item.id }>
-                  //   <p ata-testid="shopping-cart-product-name">{ item.name }</p>
-                  //   <img src={ item.image } alt={ item.name } />
-                  //   <p>
-                  //     R$
-                  //     { ` ${item.price}`}
-                  //   </p>
-                  // </div>
-                  ))
+                ))
             )
         }
 
