@@ -16,12 +16,18 @@ class ShoppingCart extends React.Component {
     return (
       <div className="products">
         {
-          shoppingCart.length === 0
+          shoppingCart === null
             ? <p data-testid="shopping-cart-empty-message">{message}</p>
             : (
               shoppingCart
                 .map((item) => (
                   <div className="product" key={ item[0].id }>
+                    <p
+                      data-testid="shopping-cart-product-quantity"
+                    >
+                      Quatidade:
+                      {` ${item[1]}`}
+                    </p>
                     <p data-testid="shopping-cart-product-name">{ item[0].name }</p>
                     <img src={ item[0].image } alt={ item[0].name } />
                     <p>
