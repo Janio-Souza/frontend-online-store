@@ -60,7 +60,7 @@ class CardProducts extends React.Component {
           onClick={ this.redirect }
         >
           <p>{ name }</p>
-          <img src={ image } alt={ name } />
+          <img width="90" height="90" src={ image } alt={ name } />
           <p>
             R$
             { price }
