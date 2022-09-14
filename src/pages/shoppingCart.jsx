@@ -11,6 +11,20 @@ class ShoppingCart extends React.Component {
     this.setState({ shoppingCart: JSON.parse(localStorage.getItem('itens')) });
   }
 
+  increaseClick = ({ target }) => {
+    const { id } = target;
+    const { shoppingCart } = this.state;
+    shoppingCart.map((value) => (value[0].id === id ?  value.push(1) : console.log('falso')));
+  };
+
+  decreaseClick = () => {
+
+  };
+
+  removeClick = () => {
+
+  };
+
   render() {
     const { shoppingCart, message } = this.state;
     return (
@@ -34,6 +48,28 @@ class ShoppingCart extends React.Component {
                       R$
                       { ` ${item[0].price}`}
                     </p>
+                    <button
+                      type="button"
+                      id={ item[0].id }
+                      data-testid="product-increase-quantity"
+                      onClick={ this.increaseClick }
+                    >
+                      +
+                    </button>
+                    <button
+                      type="button"
+                      data-testid="product-decrease-quantity"
+                      onClick={ this.decreaseClick }
+                    >
+                      -
+                    </button>
+                    <button
+                      type="button"
+                      data-testid="remove-product"
+                      onClick={ this.removeClick }
+                    >
+                      Remover
+                    </button>
                   </div>
                 ))
             )
