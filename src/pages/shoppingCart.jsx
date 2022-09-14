@@ -11,12 +11,43 @@ class ShoppingCart extends React.Component {
     this.setState({ shoppingCart: JSON.parse(localStorage.getItem('itens')) });
   }
 
+  componentDidUpdate() {
+  }
+
+  increaseClick = ({ target }) => {
+    const { id } = target;
+    const { shoppingCart } = this.state;
+    shoppingCart.map((value) => (
+      value[0].id === id ? value.splice(1, 1, value[1] + 1) : console.log('falso')));
+    this.setState({ shoppingCart });
+    localStorage.setItem('itens', JSON.stringify(shoppingCart));
+  };
+
+  decreaseClick = ({ target }) => {
+    const { id } = target;
+    const { shoppingCart } = this.state;
+    shoppingCart.map((value) => (
+      value[0].id === id ? value
+        .splice(1, 1, value[1] <= 1 ? 1 : value[1] - 1) : console.log('falso')));
+    this.setState({ shoppingCart });
+    localStorage.setItem('itens', JSON.stringify(shoppingCart));
+  };
+
+  removeClick = ({ target }) => {
+    const { id } = target;
+    const { shoppingCart } = this.state;
+    const removeProduct = shoppingCart.filter((value) => (
+      value[0].id !== id ? value : null));
+    this.setState({ shoppingCart: removeProduct });
+    localStorage.setItem('itens', JSON.stringify(removeProduct));
+  };
+
   render() {
     const { shoppingCart, message } = this.state;
     return (
       <div className="products">
         {
-          shoppingCart === null
+          shoppingCart === null || shoppingCart.length === 0
             ? <p data-testid="shopping-cart-empty-message">{message}</p>
             : (
               shoppingCart
@@ -34,6 +65,30 @@ class ShoppingCart extends React.Component {
                       R$
                       { ` ${item[0].price}`}
                     </p>
+                    <button
+                      type="button"
+                      id={ item[0].id }
+                      data-testid="product-increase-quantity"
+                      onClick={ this.increaseClick }
+                    >
+                      +
+                    </button>
+                    <button
+                      type="button"
+                      id={ item[0].id }
+                      data-testid="product-decrease-quantity"
+                      onClick={ this.decreaseClick }
+                    >
+                      -
+                    </button>
+                    <button
+                      type="button"
+                      id={ item[0].id }
+                      data-testid="remove-product"
+                      onClick={ this.removeClick }
+                    >
+                      Remover
+                    </button>
                   </div>
                 ))
             )
