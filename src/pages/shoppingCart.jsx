@@ -11,18 +11,35 @@ class ShoppingCart extends React.Component {
     this.setState({ shoppingCart: JSON.parse(localStorage.getItem('itens')) });
   }
 
+  componentDidUpdate() {
+  }
+
   increaseClick = ({ target }) => {
     const { id } = target;
     const { shoppingCart } = this.state;
-    shoppingCart.map((value) => (value[0].id === id ?  value.push(1) : console.log('falso')));
+    shoppingCart.map((value) => (
+      value[0].id === id ? value.splice(1, 1, value[1] + 1) : console.log('falso')));
+    this.setState({ shoppingCart });
+    localStorage.setItem('itens', JSON.stringify(shoppingCart));
   };
 
-  decreaseClick = () => {
-
+  decreaseClick = ({ target }) => {
+    const { id } = target;
+    const { shoppingCart } = this.state;
+    shoppingCart.map((value) => (
+      value[0].id === id ? value
+        .splice(1, 1, value[1] <= 1 ? 1 : value[1] - 1) : console.log('falso')));
+    this.setState({ shoppingCart });
+    localStorage.setItem('itens', JSON.stringify(shoppingCart));
   };
 
-  removeClick = () => {
-
+  removeClick = ({ target }) => {
+    const { id } = target;
+    const { shoppingCart } = this.state;
+    const removeProduct = shoppingCart.filter((value) => (
+      value[0].id !== id ? value : null));
+    this.setState({ shoppingCart: removeProduct });
+    localStorage.setItem('itens', JSON.stringify(removeProduct));
   };
 
   render() {
@@ -30,7 +47,7 @@ class ShoppingCart extends React.Component {
     return (
       <div className="products">
         {
-          shoppingCart === null
+          shoppingCart === null || shoppingCart.length === 0
             ? <p data-testid="shopping-cart-empty-message">{message}</p>
             : (
               shoppingCart
@@ -58,6 +75,7 @@ class ShoppingCart extends React.Component {
                     </button>
                     <button
                       type="button"
+                      id={ item[0].id }
                       data-testid="product-decrease-quantity"
                       onClick={ this.decreaseClick }
                     >
@@ -65,6 +83,7 @@ class ShoppingCart extends React.Component {
                     </button>
                     <button
                       type="button"
+                      id={ item[0].id }
                       data-testid="remove-product"
                       onClick={ this.removeClick }
                     >
