@@ -8,7 +8,8 @@ class ShoppingCart extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({ shoppingCart: JSON.parse(localStorage.getItem('itens')) });
+    const shoppingCart = JSON.parse(localStorage.getItem('itens'));
+    this.setState({ shoppingCart });
   }
 
   componentDidUpdate() {
@@ -53,17 +54,15 @@ class ShoppingCart extends React.Component {
               shoppingCart
                 .map((item) => (
                   <div className="product" key={ item[0].id }>
-                    <p
-                      data-testid="shopping-cart-product-quantity"
-                    >
-                      Quatidade:
-                      {` ${item[1]}`}
+                    Quantidade:
+                    <p data-testid="shopping-cart-product-quantity">
+                      {item[1]}
                     </p>
                     <p data-testid="shopping-cart-product-name">{ item[0].name }</p>
-                    <img src={ item[0].image } alt={ item[0].name } />
+                    <img src={ item[0].thumbnail } alt={ item[0].name } />
                     <p>
                       R$
-                      { ` ${item[0].price}`}
+                      { item[0].price }
                     </p>
                     <button
                       type="button"
