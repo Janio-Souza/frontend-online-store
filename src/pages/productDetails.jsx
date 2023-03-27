@@ -84,6 +84,14 @@ export default class ProductyDetails extends React.Component {
           </button>
 
         </section>
+        <section>
+          <h2>Avaliações</h2>
+          <div>
+            <form>
+              <input id="email" type="email" placeholder="email" />
+            </form>
+          </div>
+        </section>
       </div>
     );
   }
