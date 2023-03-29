@@ -26,23 +26,23 @@ Clone o repositório em sua maquina e siga os passos.
 
 1. Entrar no diretório app:
 
-  $ cd app
+    $ cd app
   
 2. Instalar dependencias:
-  $ npm install
+    $ npm install
 
 3. Iniciar aplicação:
   
-  $ npm run start
+    $ npm run start
 
 4. Acessar atravésdo navegador:
-  <p>http://localhost:3000/</p>
+    <p>http://localhost:3000/</p>
 
 ## Contribuintes
 |Nome|GitHub|
 | -------- | -------- |
 |Janio Souza|https://github.com/Janio-Souza|
-|Janio Souza|https://github.com/devthalis|
+|Thalis Venancio|https://github.com/devthalis|
 
 ## Contato
 [GitHub: Janio Souza](https://github.com/Janio-Souza)
