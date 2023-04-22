@@ -1,7 +1,7 @@
 # Frontend Online Store
 
 ## Sobre o Projeto
-Uma versão simplificada, sem persistência no banco de dados, de uma **loja online**, desenvolvendo em grupo suas funcionalidades de acordo com demandas definidas em um quadro Kanban.
+Uma versão simplificada, sem persistência de banco de dados, de uma **loja online**, desenvolvendo em grupo suas funcionalidades de acordo com demandas definidas em um quadro Kanban.
   
   Temos uma aplicação em que pessoas usuárias podem:
   - Buscar produtos por termos e categorias a partir da _API do Mercado Livre_;
